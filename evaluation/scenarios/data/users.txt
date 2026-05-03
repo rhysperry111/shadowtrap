@@ -1,0 +1,10 @@
+root
+admin
+ubuntu
+ec2-user
+operator
+svc_backup
+jenkins
+deploy
+support
+oracle
