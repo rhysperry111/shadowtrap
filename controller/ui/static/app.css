@@ -1,0 +1,117 @@
+:root {
+  color-scheme: dark light;
+  --bg: #0e0f12;
+  --fg: #e7e7e7;
+  --muted: #8c8c8c;
+  --accent: #9cdcfe;
+  --border: #2a2b30;
+  --danger: #f08080;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+header h1 { margin: 0; font-size: 18px; letter-spacing: 1px; }
+header .auth { display: flex; gap: 8px; align-items: center; }
+header input[type=password] { min-width: 260px; }
+
+nav {
+  display: flex;
+  gap: 16px;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--border);
+}
+nav a {
+  color: var(--muted);
+  text-decoration: none;
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+}
+nav a.active, nav a:hover {
+  color: var(--fg);
+  border-bottom-color: var(--accent);
+}
+
+main { padding: 20px; max-width: 1200px; margin: 0 auto; }
+
+section h2 { margin-top: 0; }
+section h3 { margin-top: 32px; color: var(--muted); font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+}
+th, td {
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+th { color: var(--muted); font-weight: normal; text-transform: uppercase; font-size: 11px; }
+
+td .healthy { color: #9cdc9c; }
+td .degraded { color: var(--danger); }
+
+form {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px 16px;
+  margin-bottom: 20px;
+}
+form label { display: flex; flex-direction: column; font-size: 12px; color: var(--muted); }
+form input, form select {
+  background: transparent;
+  color: var(--fg);
+  border: 1px solid var(--border);
+  padding: 6px 8px;
+  font-family: inherit;
+  font-size: 14px;
+}
+form button {
+  background: var(--accent);
+  color: #000;
+  border: 0;
+  padding: 8px 16px;
+  cursor: pointer;
+  align-self: end;
+  grid-column: 1 / -1;
+  justify-self: start;
+}
+
+button.delete {
+  background: transparent;
+  color: var(--danger);
+  border: 1px solid var(--danger);
+  padding: 2px 8px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.muted { color: var(--muted); font-size: 12px; }
+
+#api-status { font-size: 12px; color: var(--muted); }
+
+pre {
+  background: #1a1b20;
+  padding: 10px;
+  border-left: 2px solid var(--accent);
+  overflow-x: auto;
+}

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ShadowTrap</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header>
+  <h1>ShadowTrap</h1>
+  <div class="auth">
+    <label>API key
+      <input id="api-key" type="password" placeholder="paste your key">
+    </label>
+    <button id="api-key-save">Use</button>
+    <span id="api-status"></span>
+  </div>
+</header>
+
+<nav>
+  <a href="#dashboard" class="active">Dashboard</a>
+  <a href="#deployments">Deployments</a>
+  <a href="#images">Images</a>
+  <a href="#networks">Networks</a>
+  <a href="#keys">API keys</a>
+</nav>
+
+<main>
+
+<section id="dashboard">
+  <h2>Pots</h2>
+  <table id="pots-table">
+    <thead><tr>
+      <th>ID</th><th>Deployment</th><th>IP</th><th>Status</th>
+      <th>Cred hint</th><th>Expires</th>
+    </tr></thead>
+    <tbody></tbody>
+  </table>
+  <p class="muted">Auto-refreshes every 10s.</p>
+</section>
+
+<section id="deployments" hidden>
+  <h2>Deployments</h2>
+  <table id="deployments-table">
+    <thead><tr>
+      <th>ID</th><th>Active</th><th>Count</th><th>Images</th>
+      <th>Networks</th><th>IPAM</th><th>TTL (min)</th><th></th>
+    </tr></thead>
+    <tbody></tbody>
+  </table>
+
+  <h3>Create / update</h3>
+  <form id="deployment-form">
+    <label>ID <input name="id" required pattern="[a-zA-Z0-9_-]+"></label>
+    <label>Active <input name="active" type="checkbox" checked></label>
+    <label>Count <input name="count" type="number" min="0" value="1"></label>
+    <label>Images (comma-separated) <input name="image_ids"></label>
+    <label>Networks (comma-separated) <input name="network_ids"></label>
+    <label>IPAM
+      <select name="ipam">
+        <option value="sweep">sweep (auto-detect)</option>
+        <option value="phpipam">phpIPAM</option>
+        <option value="netbox">NetBox</option>
+      </select>
+    </label>
+    <label>TTL minutes (0 = no lifecycle) <input name="ttl_minutes" type="number" min="0" value="0"></label>
+    <button type="submit">Save</button>
+  </form>
+</section>
+
+<section id="images" hidden>
+  <h2>Pot images</h2>
+  <table id="images-table">
+    <thead><tr>
+      <th>ID</th><th>Base</th><th>Version</th><th>OS</th><th>Features</th>
+    </tr></thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+<section id="networks" hidden>
+  <h2>Host networking</h2>
+  <form id="host-form">
+    <label>Network <input name="network"></label>
+    <label>Mode
+      <select name="mode"><option value="dhcp">dhcp</option><option value="static">static</option></select>
+    </label>
+    <label>Static IP <input name="static_ip"></label>
+    <label>Gateway <input name="static_gateway"></label>
+    <label>DNS <input name="static_dns"></label>
+    <button type="submit">Save</button>
+  </form>
+
+  <h2>Interfaces</h2>
+  <table id="interfaces-table">
+    <thead><tr><th>ID</th><th>Enabled</th><th>Link</th><th>Mode</th></tr></thead>
+    <tbody></tbody>
+  </table>
+
+  <h2>Configured networks</h2>
+  <table id="networks-table">
+    <thead><tr>
+      <th>ID</th><th>Enabled</th><th>Interface</th><th>Type</th>
+      <th>VLAN</th><th>Subnet</th><th></th>
+    </tr></thead>
+    <tbody></tbody>
+  </table>
+
+  <h3>Create / update network</h3>
+  <form id="network-form">
+    <label>ID <input name="id" required></label>
+    <label>Enabled <input name="enabled" type="checkbox" checked></label>
+    <label>Interface <input name="interface" required></label>
+    <label>Type
+      <select name="type"><option value="native">native</option><option value="vlan">vlan</option></select>
+    </label>
+    <label>VLAN id <input name="vlan_id" type="number" min="0" value="0"></label>
+    <label>Subnet <input name="subnet" placeholder="10.0.0.0/24"></label>
+    <button type="submit">Save</button>
+  </form>
+</section>
+
+<section id="keys" hidden>
+  <h2>API keys</h2>
+  <p class="muted">Creating a key shows the raw value once; copy it then. Admin only.</p>
+  <table id="keys-table">
+    <thead><tr><th>Name</th><th>Role</th><th>Created</th><th></th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <form id="key-form">
+    <label>Name <input name="name" required></label>
+    <label>Role
+      <select name="role"><option>viewer</option><option>operator</option><option>admin</option></select>
+    </label>
+    <button type="submit">Create</button>
+  </form>
+  <pre id="key-output" hidden></pre>
+</section>
+
+</main>
+<script src="app.js"></script>
+</body>
+</html>
