@@ -1,0 +1,145 @@
+{
+  "_comment": [
+    "===========================================================================",
+    " ShadowTrap evaluation results — handback schema (version 1).               ",
+    "                                                                            ",
+    " Send this single file back populated, alongside the raw evidence/*.csv,    ",
+    " *.log, and *.json files. Every #dummy[] block in the dissertation maps     ",
+    " to one or more fields here. Fields left as null will keep their #dummy[]   ",
+    " wrapper in the rendered PDF; non-null fields will replace it.              ",
+    "                                                                            ",
+    " The orchestrator (harness/run_all.sh) writes this file automatically; the  ",
+    " values below are the dummy ones currently in the dissertation, included    ",
+    " as a worked example.                                                       ",
+    "                                                                            ",
+    " Mapping #dummy[] block -> field path:                                      ",
+    "  Abstract findings              -> abstract_summary                        ",
+    "  §4.1 ShadowTrap System         -> lab.* + provisioning.* + telemetry.*    ",
+    "  §4.2 Detection Effectiveness   -> detection.* + fpr.*                     ",
+    "  tab:detection                  -> detection.scenarios[]                   ",
+    "  §4.3 Containment Integrity     -> containment.*                           ",
+    "  tab:containment                -> containment.attacks[]                   ",
+    "  §4.5 / §5 / §5.7 Conclusions   -> derived from above                      ",
+    "  Appendix E (E.1..E.10)         -> evidence/*.csv,*.log,*.json verbatim    ",
+    "==========================================================================="
+  ],
+
+  "schema_version": 1,
+  "captured_at": null,
+
+  "lab": {
+    "host": {
+      "cpu_model": null,
+      "cpu_cores": null,
+      "memory_gib": null,
+      "kernel": null,
+      "distro": null
+    },
+    "software": {
+      "libvirt": null,
+      "qemu": null,
+      "postgres": null,
+      "nftables": null,
+      "go": null
+    },
+    "binaries": {
+      "controller_mib": null,
+      "agent_mib": null
+    }
+  },
+
+  "provisioning": {
+    "n_lifecycles": 42,
+    "boot_p50_s": 9.4,
+    "boot_p95_s": 11.2,
+    "prov_p50_s": 11.2,
+    "prov_p95_s": 14.7,
+    "ttl_reap_p50_s": 4.9,
+    "ttl_reap_p95_s": 6.1,
+    "tap_exhaust_recovered": true,
+
+    "sweep": {
+      "subnet": "10.10.42.0/24",
+      "occupied_ground_truth": 6,
+      "free_reported_by_sweep": 247,
+      "ground_truth_misses": 0
+    },
+    "ipam": {
+      "phpipam": {
+        "deployments": 20,
+        "ip_matches_first_free": 20,
+        "agreement_pct": 100.0
+      },
+      "netbox": {
+        "deployments": 20,
+        "ip_matches_first_free": 20,
+        "agreement_pct": 100.0
+      }
+    }
+  },
+
+  "telemetry": {
+    "events_in_2h_window": 3148,
+    "duplicates": 0,
+    "out_of_order": 0
+  },
+
+  "detection": {
+    "runs_per_scenario": 10,
+    "scenarios": [
+      {"id": "S1_tcp_sweep",     "actions": 60,  "detected": 60,  "p50_t_to_alert_s": 0.4, "p95_t_to_alert_s": 0.9, "notes": null},
+      {"id": "S2_ssh_credstuff", "actions": 500, "detected": 482, "p50_t_to_alert_s": 1.1, "p95_t_to_alert_s": 1.8, "notes": "sshd rate-throttling on rapid retries"},
+      {"id": "S3_web_exploit",   "actions": 50,  "detected": 42,  "p50_t_to_alert_s": 1.6, "p95_t_to_alert_s": 2.4, "notes": "apache2 logrotate window"},
+      {"id": "S4_persistence",   "actions": 40,  "detected": 37,  "p50_t_to_alert_s": 3.2, "p95_t_to_alert_s": 4.8, "notes": null},
+      {"id": "S5_lateral",       "actions": 60,  "detected": 56,  "p50_t_to_alert_s": 0.9, "p95_t_to_alert_s": 1.7, "notes": null},
+      {"id": "S6_egress",        "actions": 60,  "detected": 54,  "p50_t_to_alert_s": 1.4, "p95_t_to_alert_s": 2.1, "notes": null}
+    ]
+  },
+
+  "fpr": {
+    "background_window_h": 12.0,
+    "false_positive_events": 1,
+    "pots_in_deployment": 14,
+    "events_per_pot_per_hour": 0.16
+  },
+
+  "containment": {
+    "n": 9, "n_pass": 8, "n_partial": 1, "n_fail": 0,
+    "drop_watcher_attribution_pct": 100.0,
+    "attacks": [
+      {"id": "A1_outbound_tcp",     "expected": "drop + event", "observed": "pass",    "drops_delta": 5,  "event_pot_id": null},
+      {"id": "A2_outbound_dns",     "expected": "drop + event", "observed": "pass",    "drops_delta": 5,  "event_pot_id": null},
+      {"id": "A3_icmp_tunnel",      "expected": "drop + event", "observed": "partial", "drops_delta": 20, "note": "filter held; counter watchdog rxΔ/txΔ asymmetry masked"},
+      {"id": "A4_lateral_ssh",      "expected": "drop + event", "observed": "pass",    "drops_delta": 4,  "event_pot_id": null},
+      {"id": "A5_lateral_smb",      "expected": "drop + event", "observed": "pass",    "drops_delta": 6,  "event_pot_id": null},
+      {"id": "A6_cron_persistence", "expected": "discarded on TTL rebuild", "observed": "pass", "within_lifetime": true,  "after_rebuild": "absent"},
+      {"id": "A7_ssh_key_implant",  "expected": "discarded on TTL rebuild", "observed": "pass", "within_lifetime": true,  "after_rebuild": "absent"},
+      {"id": "A8_credreplay_peer",  "expected": "auth reject",  "observed": "pass",    "auth_result": "rejected"},
+      {"id": "A9_credreplay_prod",  "expected": "auth reject",  "observed": "pass",    "auth_result": "rejected"}
+    ]
+  },
+
+  "abstract_summary": {
+    "detection_pct_min": 84,
+    "detection_pct_max": 100,
+    "median_t_to_alert_s": 1.4,
+    "fpr_per_pot_per_hour": 0.16,
+    "containment_held": true,
+    "drop_watcher_attribution_within_one_tick": true,
+    "comparator_summary": "matches on automation and IPAM-driven coverage; exceeds on transparency, extensibility, and TCO; trails on SIEM connector breadth and OT/IoT decoy catalogue"
+  },
+
+  "evidence_files": {
+    "boot_latency_csv":         "evidence/boot-latency.csv",
+    "provisioning_latency_csv": "evidence/provisioning-latency.csv",
+    "sweep_run_log":            "evidence/sweep-run.log",
+    "ipam_compare_tsv":         "evidence/ipam-compare.tsv",
+    "scheduler_log":            "evidence/scheduler.log",
+    "events_excerpt_sql":       "evidence/events-excerpt.txt",
+    "nftables_counters":        "evidence/nftables-counters.txt",
+    "containment_json":         "evidence/containment.json",
+    "watchdog_miss_log":        "evidence/watchdog-miss.log",
+    "cred_replay_log":          "evidence/cred-replay.log",
+    "web_exploit_log":          "evidence/web-exploit-runs.log"
+  }
+}

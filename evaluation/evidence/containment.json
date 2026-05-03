@@ -1,0 +1,112 @@
+{
+  "n": 9,
+  "n_pass": 8,
+  "n_partial": 1,
+  "n_fail": 0,
+  "drop_watcher_attribution_pct": 100.0,
+  "results": [
+    {
+      "id": "A1_outbound_tcp",
+      "drops_pre": 0,
+      "drops_post": 5,
+      "drops_delta": 5,
+      "exit_code": 0,
+      "pass": true,
+      "event": {
+        "time": "2026-05-03T09:48:20.000Z",
+        "pot_id": "t2-boot-1777800000@eval-net@ubuntu-24@6",
+        "source": "drop_watcher",
+        "data": "{\"layer\": \"host_firewall\", \"kmsg\": \"shadowtrap-drop: ... MAC=ff:ff:ff:ff:ff:ff:02:73:74:03:51:d8:08:00 ...\"}"
+      }
+    },
+    {
+      "id": "A2_outbound_dns",
+      "drops_pre": 5,
+      "drops_post": 10,
+      "drops_delta": 5,
+      "exit_code": 0,
+      "pass": true,
+      "event": {
+        "time": "2026-05-03T09:49:20.000Z",
+        "pot_id": "t2-boot-1777800000@eval-net@ubuntu-24@16",
+        "source": "drop_watcher",
+        "data": "{\"layer\": \"host_firewall\", \"kmsg\": \"shadowtrap-drop: ... MAC=ff:ff:ff:ff:ff:ff:02:73:74:ba:53:bd:08:00 ...\"}"
+      }
+    },
+    {
+      "id": "A3_icmp_tunnel",
+      "drops_pre": 10,
+      "drops_post": 30,
+      "drops_delta": 20,
+      "exit_code": 0,
+      "pass": "partial",
+      "note": "filter held; counter watchdog rx\u0394/tx\u0394 asymmetry masked by inbound probe stream"
+    },
+    {
+      "id": "A4_lateral_ssh",
+      "drops_pre": 30,
+      "drops_post": 34,
+      "drops_delta": 4,
+      "exit_code": 0,
+      "pass": true,
+      "event": {
+        "time": "2026-05-03T09:51:20.000Z",
+        "pot_id": "t2-boot-1777800000@eval-net@ubuntu-24@11",
+        "source": "drop_watcher",
+        "data": "{\"layer\": \"host_firewall\", \"kmsg\": \"shadowtrap-drop: ... MAC=ff:ff:ff:ff:ff:ff:02:73:74:ae:8e:4f:08:00 ...\"}"
+      }
+    },
+    {
+      "id": "A5_lateral_smb",
+      "drops_pre": 34,
+      "drops_post": 40,
+      "drops_delta": 6,
+      "exit_code": 0,
+      "pass": true,
+      "event": {
+        "time": "2026-05-03T09:52:20.000Z",
+        "pot_id": "t2-boot-1777800000@eval-net@ubuntu-24@17",
+        "source": "drop_watcher",
+        "data": "{\"layer\": \"host_firewall\", \"kmsg\": \"shadowtrap-drop: ... MAC=ff:ff:ff:ff:ff:ff:02:73:74:70:e5:8e:08:00 ...\"}"
+      }
+    },
+    {
+      "id": "A6_cron_persistence",
+      "drops_pre": 40,
+      "drops_post": 40,
+      "drops_delta": 0,
+      "exit_code": 0,
+      "pass": true,
+      "within_lifetime": true,
+      "after_rebuild": "absent"
+    },
+    {
+      "id": "A7_ssh_key_implant",
+      "drops_pre": 40,
+      "drops_post": 40,
+      "drops_delta": 0,
+      "exit_code": 0,
+      "pass": true,
+      "within_lifetime": true,
+      "after_rebuild": "absent"
+    },
+    {
+      "id": "A8_credreplay_peer",
+      "drops_pre": 40,
+      "drops_post": 40,
+      "drops_delta": 0,
+      "exit_code": 0,
+      "pass": true,
+      "auth_result": "rejected"
+    },
+    {
+      "id": "A9_credreplay_prod",
+      "drops_pre": 40,
+      "drops_post": 40,
+      "drops_delta": 0,
+      "exit_code": 0,
+      "pass": true,
+      "auth_result": "rejected"
+    }
+  ]
+}

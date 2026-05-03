@@ -1,0 +1,50 @@
+{
+  "S1_tcp_sweep": {
+    "actions": 60,
+    "detected": 58,
+    "p50_t_to_alert_s": 0.702,
+    "p95_t_to_alert_s": 1.164,
+    "detection_pct": 96.7
+  },
+  "S2_ssh_credstuff": {
+    "actions": 500,
+    "detected": 350,
+    "p50_t_to_alert_s": 1.766,
+    "p95_t_to_alert_s": 2.672,
+    "detection_pct": 70.0
+  },
+  "S3_web_exploit": {
+    "actions": 50,
+    "detected": 33,
+    "p50_t_to_alert_s": 2.216,
+    "p95_t_to_alert_s": 3.998,
+    "detection_pct": 66.0
+  },
+  "S4_persistence": {
+    "actions": 40,
+    "detected": 31,
+    "p50_t_to_alert_s": 4.105,
+    "p95_t_to_alert_s": 6.384,
+    "detection_pct": 77.5
+  },
+  "S5_lateral": {
+    "actions": 60,
+    "detected": 50,
+    "p50_t_to_alert_s": 1.325,
+    "p95_t_to_alert_s": 1.927,
+    "detection_pct": 83.3
+  },
+  "S6_egress": {
+    "actions": 60,
+    "detected": 41,
+    "p50_t_to_alert_s": 2.144,
+    "p95_t_to_alert_s": 3.15,
+    "detection_pct": 68.3
+  },
+  "_fpr": {
+    "background_window_h": 0.421,
+    "false_positive_events": 4,
+    "pots_in_deployment": 18,
+    "events_per_pot_per_hour": 0.528
+  }
+}

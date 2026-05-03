@@ -1,0 +1,252 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-05-03T09:19:00.000Z",
+  "lab": {
+    "captured_at": "2026-05-03T09:19:00.000Z",
+    "host": {
+      "cpu_model": "Intel(R) Xeon(R) CPU E5-2680 v4 @ 2.40GHz",
+      "cpu_cores": 8,
+      "memory_gib": 16.0,
+      "kernel": "6.8.0-31-generic",
+      "distro": "Ubuntu 24.04.1 LTS"
+    },
+    "software": {
+      "libvirt": "10.0.0",
+      "qemu": "8.2.2",
+      "postgres": "16.4",
+      "nftables": "1.0.9",
+      "go": "go1.22.4"
+    },
+    "binaries": {
+      "controller_bytes": 14942720,
+      "agent_bytes": 6291456,
+      "controller_mib": 14.3,
+      "agent_mib": 6.0
+    }
+  },
+  "provisioning": {
+    "n_lifecycles": 18,
+    "boot_p50_s": 10.65,
+    "boot_p95_s": 15.5,
+    "prov_p50_s": 12.4,
+    "prov_p95_s": 17.0,
+    "ttl_reap_p50_s": 5.4,
+    "ttl_reap_p95_s": 7.2,
+    "tap_exhaust_recovered": true,
+    "sweep": {
+      "subnet": "10.10.42.0/24",
+      "occupied_ground_truth": 5,
+      "free_reported_by_sweep": 247,
+      "ground_truth_misses": 2
+    },
+    "ipam": {
+      "total_deployments": 40,
+      "ip_matches_first_free": 31,
+      "agreement_pct": 77.5
+    }
+  },
+  "telemetry": {
+    "events_in_2h_window": 2143,
+    "duplicates": 0,
+    "out_of_order": 3
+  },
+  "detection": {
+    "runs_per_scenario": 10,
+    "scenarios": [
+      {
+        "id": "S1_tcp_sweep",
+        "actions": 60,
+        "detected": 58,
+        "p50_t_to_alert_s": 0.702,
+        "p95_t_to_alert_s": 1.164,
+        "detection_pct": 96.7,
+        "notes": null
+      },
+      {
+        "id": "S2_ssh_credstuff",
+        "actions": 500,
+        "detected": 350,
+        "p50_t_to_alert_s": 1.766,
+        "p95_t_to_alert_s": 2.672,
+        "detection_pct": 70.0,
+        "notes": null
+      },
+      {
+        "id": "S3_web_exploit",
+        "actions": 50,
+        "detected": 33,
+        "p50_t_to_alert_s": 2.216,
+        "p95_t_to_alert_s": 3.998,
+        "detection_pct": 66.0,
+        "notes": null
+      },
+      {
+        "id": "S4_persistence",
+        "actions": 40,
+        "detected": 31,
+        "p50_t_to_alert_s": 4.105,
+        "p95_t_to_alert_s": 6.384,
+        "detection_pct": 77.5,
+        "notes": null
+      },
+      {
+        "id": "S5_lateral",
+        "actions": 60,
+        "detected": 50,
+        "p50_t_to_alert_s": 1.325,
+        "p95_t_to_alert_s": 1.927,
+        "detection_pct": 83.3,
+        "notes": null
+      },
+      {
+        "id": "S6_egress",
+        "actions": 60,
+        "detected": 41,
+        "p50_t_to_alert_s": 2.144,
+        "p95_t_to_alert_s": 3.15,
+        "detection_pct": 68.3,
+        "notes": null
+      }
+    ]
+  },
+  "fpr": {
+    "background_window_h": 0.421,
+    "false_positive_events": 4,
+    "pots_in_deployment": 18,
+    "events_per_pot_per_hour": 0.528
+  },
+  "containment": {
+    "n": 9,
+    "n_pass": 8,
+    "n_partial": 1,
+    "n_fail": 0,
+    "drop_watcher_attribution_pct": 100.0,
+    "results": [
+      {
+        "id": "A1_outbound_tcp",
+        "drops_pre": 0,
+        "drops_post": 5,
+        "drops_delta": 5,
+        "exit_code": 0,
+        "pass": true,
+        "event": {
+          "time": "2026-05-03T09:48:20.000Z",
+          "pot_id": "t2-boot-1777800000@eval-net@ubuntu-24@6",
+          "source": "drop_watcher",
+          "data": "{\"layer\": \"host_firewall\", \"kmsg\": \"shadowtrap-drop: ... MAC=ff:ff:ff:ff:ff:ff:02:73:74:03:51:d8:08:00 ...\"}"
+        }
+      },
+      {
+        "id": "A2_outbound_dns",
+        "drops_pre": 5,
+        "drops_post": 10,
+        "drops_delta": 5,
+        "exit_code": 0,
+        "pass": true,
+        "event": {
+          "time": "2026-05-03T09:49:20.000Z",
+          "pot_id": "t2-boot-1777800000@eval-net@ubuntu-24@16",
+          "source": "drop_watcher",
+          "data": "{\"layer\": \"host_firewall\", \"kmsg\": \"shadowtrap-drop: ... MAC=ff:ff:ff:ff:ff:ff:02:73:74:ba:53:bd:08:00 ...\"}"
+        }
+      },
+      {
+        "id": "A3_icmp_tunnel",
+        "drops_pre": 10,
+        "drops_post": 30,
+        "drops_delta": 20,
+        "exit_code": 0,
+        "pass": "partial",
+        "note": "filter held; counter watchdog rx\u0394/tx\u0394 asymmetry masked by inbound probe stream"
+      },
+      {
+        "id": "A4_lateral_ssh",
+        "drops_pre": 30,
+        "drops_post": 34,
+        "drops_delta": 4,
+        "exit_code": 0,
+        "pass": true,
+        "event": {
+          "time": "2026-05-03T09:51:20.000Z",
+          "pot_id": "t2-boot-1777800000@eval-net@ubuntu-24@11",
+          "source": "drop_watcher",
+          "data": "{\"layer\": \"host_firewall\", \"kmsg\": \"shadowtrap-drop: ... MAC=ff:ff:ff:ff:ff:ff:02:73:74:ae:8e:4f:08:00 ...\"}"
+        }
+      },
+      {
+        "id": "A5_lateral_smb",
+        "drops_pre": 34,
+        "drops_post": 40,
+        "drops_delta": 6,
+        "exit_code": 0,
+        "pass": true,
+        "event": {
+          "time": "2026-05-03T09:52:20.000Z",
+          "pot_id": "t2-boot-1777800000@eval-net@ubuntu-24@17",
+          "source": "drop_watcher",
+          "data": "{\"layer\": \"host_firewall\", \"kmsg\": \"shadowtrap-drop: ... MAC=ff:ff:ff:ff:ff:ff:02:73:74:70:e5:8e:08:00 ...\"}"
+        }
+      },
+      {
+        "id": "A6_cron_persistence",
+        "drops_pre": 40,
+        "drops_post": 40,
+        "drops_delta": 0,
+        "exit_code": 0,
+        "pass": true,
+        "within_lifetime": true,
+        "after_rebuild": "absent"
+      },
+      {
+        "id": "A7_ssh_key_implant",
+        "drops_pre": 40,
+        "drops_post": 40,
+        "drops_delta": 0,
+        "exit_code": 0,
+        "pass": true,
+        "within_lifetime": true,
+        "after_rebuild": "absent"
+      },
+      {
+        "id": "A8_credreplay_peer",
+        "drops_pre": 40,
+        "drops_post": 40,
+        "drops_delta": 0,
+        "exit_code": 0,
+        "pass": true,
+        "auth_result": "rejected"
+      },
+      {
+        "id": "A9_credreplay_prod",
+        "drops_pre": 40,
+        "drops_post": 40,
+        "drops_delta": 0,
+        "exit_code": 0,
+        "pass": true,
+        "auth_result": "rejected"
+      }
+    ]
+  },
+  "abstract_summary": {
+    "detection_pct_min": 66.0,
+    "detection_pct_max": 96.7,
+    "median_t_to_alert_s": 1.96,
+    "fpr_per_pot_per_hour": 0.528,
+    "containment_held": true,
+    "drop_watcher_attribution_within_one_tick": true,
+    "comparator_summary": "matches on automation and IPAM-driven coverage; exceeds on transparency, extensibility, and TCO; trails on SIEM connector breadth and OT/IoT decoy catalogue"
+  },
+  "evidence_files": {
+    "boot_latency_csv": "evidence/boot-latency.csv",
+    "provisioning_latency_csv": "evidence/provisioning-latency.csv",
+    "sweep_run_log": "evidence/sweep-run.log",
+    "ipam_compare_tsv": "evidence/ipam-compare.tsv",
+    "scheduler_log": "evidence/scheduler.log",
+    "events_excerpt_sql": "evidence/events-excerpt.txt",
+    "nftables_counters": "evidence/nftables-counters.txt",
+    "containment_json": "evidence/containment.json",
+    "watchdog_miss_log": "evidence/watchdog-miss.log",
+    "cred_replay_log": "evidence/cred-replay.log",
+    "web_exploit_log": "evidence/web-exploit-runs.log"
+  }
+}

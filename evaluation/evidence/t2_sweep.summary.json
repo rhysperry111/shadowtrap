@@ -1,0 +1,6 @@
+{
+  "subnet": "10.10.42.0/24",
+  "occupied_ground_truth": 5,
+  "free_reported_by_sweep": 247,
+  "ground_truth_misses": 2
+}

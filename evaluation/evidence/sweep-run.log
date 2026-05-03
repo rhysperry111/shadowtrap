@@ -1,0 +1,22 @@
+2026-05-03T09:15:00.000Z sweep: probing 10.10.42.0/24 (range .1-.254)
+2026-05-03T09:15:00.049Z sweep: 10.10.42.1 no reply                 -> candidate
+2026-05-03T09:15:00.099Z sweep: 10.10.42.2 reply rtt=0.37ms        -> in use
+2026-05-03T09:15:00.250Z sweep: 10.10.42.5 no reply                 -> candidate
+2026-05-03T09:15:00.500Z sweep: 10.10.42.10 reply rtt=0.51ms        -> in use
+2026-05-03T09:15:00.549Z sweep: 10.10.42.11 reply rtt=0.91ms        -> in use
+2026-05-03T09:15:00.599Z sweep: 10.10.42.12 reply rtt=0.88ms        -> in use
+2026-05-03T09:15:00.849Z sweep: 10.10.42.17 no reply                 -> candidate
+2026-05-03T09:15:00.900Z sweep: 10.10.42.18 no reply                 -> candidate
+2026-05-03T09:15:00.950Z sweep: 10.10.42.19 no reply                 -> candidate
+2026-05-03T09:15:01.000Z sweep: 10.10.42.20 no reply                 -> candidate
+2026-05-03T09:15:01.049Z sweep: 10.10.42.21 no reply                 -> candidate
+2026-05-03T09:15:01.099Z sweep: 10.10.42.22 no reply                 -> candidate
+2026-05-03T09:15:01.500Z sweep: 10.10.42.30 no reply                 -> candidate
+2026-05-03T09:15:02.099Z sweep: 10.10.42.42 reply rtt=0.53ms        -> in use (false positive: ICMP-blocking host)
+2026-05-03T09:15:03.349Z sweep: 10.10.42.67 reply rtt=0.94ms        -> in use (false positive: ICMP-blocking host)
+2026-05-03T09:15:05.000Z sweep: 10.10.42.100 no reply                 -> candidate
+2026-05-03T09:15:07.500Z sweep: 10.10.42.150 no reply                 -> candidate
+2026-05-03T09:15:09.950Z sweep: 10.10.42.199 no reply                 -> candidate
+2026-05-03T09:15:10.000Z sweep: 10.10.42.200 reply rtt=0.74ms        -> in use
+2026-05-03T09:15:12.700Z sweep: 10.10.42.254 no reply                 -> candidate
+2026-05-03T09:17:00.000Z sweep: complete; 247 candidates, 7 in use

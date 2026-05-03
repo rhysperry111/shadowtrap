@@ -1,0 +1,7 @@
+# Occupants of the evaluation /24 at sweep-time. One IP per line.
+# Used by T2.2 (sweep allocator accuracy) as ground truth.
+10.10.42.2
+10.10.42.10
+10.10.42.11
+10.10.42.12
+10.10.42.200

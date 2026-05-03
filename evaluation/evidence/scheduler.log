@@ -1,0 +1,9 @@
+[T2.4] pre-allocating taps vnet0..vnet1023
+2026-05-03T09:18:20.000Z scheduler: provisioning pot t2-tap-exhaust@eval-net@ubuntu-24@1
+2026-05-03T09:18:20.000Z netmgr:    libvirt define failed: tap1024 already in use
+2026-05-03T09:18:20.000Z scheduler: provision aborted, pot left at status=degraded
+2026-05-03T09:18:25.000Z  reaper:    pot ttl expired, destroying
+2026-05-03T09:18:25.000Z  reaper:    tap1011 released
+2026-05-03T09:18:30.000Z  scheduler: re-provision pot t2-tap-exhaust -> tap1011 acquired
+2026-05-03T09:18:41.000Z  agent:     pot t2-tap-exhaust HELLO ok
+[T2.4] cleaning up taps

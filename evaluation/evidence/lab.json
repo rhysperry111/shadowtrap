@@ -1,0 +1,23 @@
+{
+  "captured_at": "2026-05-03T09:19:00.000Z",
+  "host": {
+    "cpu_model": "Intel(R) Xeon(R) CPU E5-2680 v4 @ 2.40GHz",
+    "cpu_cores": 8,
+    "memory_gib": 16.0,
+    "kernel": "6.8.0-31-generic",
+    "distro": "Ubuntu 24.04.1 LTS"
+  },
+  "software": {
+    "libvirt": "10.0.0",
+    "qemu": "8.2.2",
+    "postgres": "16.4",
+    "nftables": "1.0.9",
+    "go": "go1.22.4"
+  },
+  "binaries": {
+    "controller_bytes": 14942720,
+    "agent_bytes": 6291456,
+    "controller_mib": 14.3,
+    "agent_mib": 6.0
+  }
+}

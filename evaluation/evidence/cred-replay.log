@@ -1,0 +1,4 @@
+[2026-05-03T09:55:15.000Z] A8 attempt root@10.10.42.9
+[2026-05-03T09:55:17.000Z] A8 reject root@10.10.42.9 (Permission denied, please try again.)
+[2026-05-03T09:56:15.000Z] A9 attempt ec2-user@10.10.42.10
+[2026-05-03T09:56:17.000Z] A9 reject ec2-user@10.10.42.10 (Permission denied, please try again.)

@@ -1,0 +1,9 @@
+{
+  "n_pots_seen": 18,
+  "n_pots_healthy": 18,
+  "n_pots_target": 18,
+  "boot_p50_s": 10.65,
+  "boot_p95_s": 15.5,
+  "prov_p50_s": 12.4,
+  "prov_p95_s": 17.0
+}
